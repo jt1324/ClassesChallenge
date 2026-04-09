@@ -33,12 +33,8 @@ public class Account {
         this.accountNumber = accountNumber;
     }
 
-    public void setAccountNumber(double accountBalance) {
-        if (with(accountBalance) < 0) {
-            System.out.println("Not enough founds.");
-        } else {
-            this.accountBalance = with(accountBalance);
-        }
+    public void setAccountBalance(double accountBalance) {
+        this.accountBalance = accountBalance;
     }
 
     public void setCustomerName (String customerName) {
@@ -61,17 +57,18 @@ public class Account {
         System.out.println("Phone number: " + phoneNumber);
     }
 
-    public double with (double withAmount) {
-        double newBalance = accountBalance - withAmount;
-        System.out.println("New balance: £" + newBalance);
-        return accountBalance - withAmount;
-        
+    public void withdraw(double withdrawAmount) {
+        if (withdrawAmount > accountBalance) {
+            System.out.println("Not enough funds.");
+            
+        }
+        accountBalance -= withdrawAmount;
+        System.out.println("Withdrawal of £" + withdrawAmount + " successful. New balance: £" + accountBalance);
     }
 
-    public double deposit (double depositAmount) {
-        double newBalance = accountBalance + depositAmount;
-        System.out.println("New balance: £" + newBalance);
-        return accountBalance + depositAmount;
+    public void deposit(double depositAmount) {
+        accountBalance += depositAmount;
+        System.out.println("Deposit of £" + depositAmount + " successful. New balance: £" + accountBalance);
     }
 
 }
